@@ -5,7 +5,12 @@ import random
 def initialize(n, c):
     global graph, cnode, walk_result
     # Generate random graph with N nodes and C edges
-    graph = nx.gnm_random_graph(n, c)
+    attempting = True
+    while attempting:
+        graph = nx.gnm_random_graph(n, c)
+        if nx.is_connected(graph):
+            attempting = False
+    
     # Set the starting node- "first" is random, because the graph is randomly generated
     cnode = list(graph.nodes)[0]
     # Add the starting node to the time series
