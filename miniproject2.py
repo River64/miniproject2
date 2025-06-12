@@ -31,9 +31,7 @@ def update():
 # Checked during simulation
 def all_visited():
     global graph, walk_result
-    result = True
-    for i in graph.nodes:
-        result = result & (i in walk_result)
+    result = len(set(walk_result)) == graph.number_of_nodes()
     # So that the simulation doesn't run forever:
     if (walk_result.__len__() > 100):
         result = True
