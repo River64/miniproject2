@@ -4,7 +4,7 @@ import random
 
 def initialize(n, c):
     global graph, cnode, walk_result
-    # Generate random graph with N nodes and C edges
+    # Generate random connected graph with N nodes and C edges
     attempting = True
     while attempting:
         graph = nx.gnm_random_graph(n, c)
@@ -41,11 +41,10 @@ time_for_average = []
 # Simulate this walking 100 times
 for i in range(100):
     initialize(10, 50)
-    if(nx.is_connected(graph)):
-        while(not all_visited()):
-            update()
-            observe()
-        print(walk_result, end = "\n\n")
-        time_for_average.append(walk_result.__len__())
+    while(not all_visited()):
+        update()
+        observe()
+    # print(walk_result)
+    time_for_average.append(walk_result.__len__())
 # Calculate and print average walking time:
 print("Average walking time:", sum(time_for_average) / time_for_average.__len__())
